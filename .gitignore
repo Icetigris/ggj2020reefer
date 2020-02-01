@@ -57,3 +57,5 @@ artifacts
 # Crashlytics generated file
 crashlytics-build.properties
 
+#Entity subscene dependency cache
+ReeferMadness/Assets/SceneDependencyCache*
