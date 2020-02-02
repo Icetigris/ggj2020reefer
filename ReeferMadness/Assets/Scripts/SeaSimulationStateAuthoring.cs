@@ -14,6 +14,8 @@ public struct SeaSimulationState : IComponentData
     public float minPH;
     public float maxPH;
     public float reactionRate;
+    public float idealTemp;
+    public float idealPh;
     //public float totalBiomass;
 }
 
@@ -28,6 +30,8 @@ public class SeaSimulationStateAuthoring : MonoBehaviour, IConvertGameObjectToEn
     public float MinPH = 7;
     public float MaxPH = 8.4f;
     public float ReactionRate = 0.1f;
+    public float IdealTemp = 78;
+    public float IdealPh = 8.4f;
     //public float TotalBiomass;
 
     public void Convert(Entity entity, EntityManager dstManager, GameObjectConversionSystem conversionSystem)
@@ -40,7 +44,9 @@ public class SeaSimulationStateAuthoring : MonoBehaviour, IConvertGameObjectToEn
             maxTemp = MaxTemperature,
             minPH = MinPH,
             maxPH = MaxPH,
-            reactionRate = ReactionRate
+            reactionRate = ReactionRate,
+            idealTemp = IdealTemp,
+            idealPh = IdealPh
         });
     }
 }

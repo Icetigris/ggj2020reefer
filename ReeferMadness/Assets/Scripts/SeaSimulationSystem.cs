@@ -27,15 +27,13 @@ public class SeaSimulationSystem : JobComponentSystem
     struct SimulateCoralGrowth : IJobForEach<Coral, NonUniformScale>
     {
         public float jobDeltaTime;
+        [ReadOnly] public SeaSimulationState simState;
         public void Execute(ref Coral coral, ref NonUniformScale scale)
         {
-            // scale coral up by scale vector * scale factor * deltaTime * hp-based growth rate
-            scale.Value = scale.Value + coral.growthScaleFactor * jobDeltaTime * (coral.HP / 100f);
-            //localToWorld = new LocalToWorld
-            //{
-            //    Value = float4x4.TRS(localToWorld.Position.xyz,
-            //                    localToWorld.Rotation, new float3(1.0f, 1.0f, 1.0f))
-            //};
+            scale.Value = clamp(scale.Value + coral.growthScaleFactor * jobDeltaTime * (coral.HP / 100f), new float3(0.1f,0.1f,0.1f), coral.growthScaleFactor * coral.maxScale);
+
+            //Health =  fullReefHealth - ( (delta ideal pH and current pH)+(delta ideal temp and current Temp)) * reductionFactor * time
+            coral.HP = clamp(coral.HP - ((simState.idealPh - simState.pH) + (simState.idealTemp - simState.temperature)) /** simState.reactionRate*/ * jobDeltaTime, 0, 100);
         }
     }
 
@@ -49,7 +47,8 @@ public class SeaSimulationSystem : JobComponentSystem
 
         var simulateCoralGrowthJob = new SimulateCoralGrowth()
         {
-            jobDeltaTime = Time.DeltaTime
+            jobDeltaTime = Time.DeltaTime,
+            simState = GetSingleton<SeaSimulationState>()
         };
         var simulateCoralGrowthJobHandle = simulateCoralGrowthJob.Schedule(this, simulateEnvironmentJobHandle);
 
