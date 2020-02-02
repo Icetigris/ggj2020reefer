@@ -37,6 +37,9 @@ public class SeaSimulationSystem : JobComponentSystem
         }
     }
 
+    // more coral raises the ph
+    // more kelp lowers temp
+
     protected override JobHandle OnUpdate(JobHandle inputDependencies)
     {
         var job = new SimulateEnvironmentJob()
