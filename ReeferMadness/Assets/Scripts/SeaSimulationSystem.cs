@@ -6,6 +6,7 @@ using Unity.Mathematics;
 using Unity.Transforms;
 using static Unity.Mathematics.math;
 
+[UpdateInGroup(typeof(SimulationSystemGroup))]
 public class SeaSimulationSystem : JobComponentSystem
 {
     [BurstCompile]
@@ -22,12 +23,36 @@ public class SeaSimulationSystem : JobComponentSystem
         }
     }
 
+    [BurstCompile]
+    struct SimulateCoralGrowth : IJobForEach<Coral, NonUniformScale>
+    {
+        public float jobDeltaTime;
+        public void Execute(ref Coral coral, ref NonUniformScale scale)
+        {
+            // scale coral up by scale vector * scale factor * deltaTime * hp-based growth rate
+            scale.Value = scale.Value + coral.growthScaleFactor * jobDeltaTime * (coral.HP / 100f);
+            //localToWorld = new LocalToWorld
+            //{
+            //    Value = float4x4.TRS(localToWorld.Position.xyz,
+            //                    localToWorld.Rotation, new float3(1.0f, 1.0f, 1.0f))
+            //};
+        }
+    }
+
     protected override JobHandle OnUpdate(JobHandle inputDependencies)
     {
         var job = new SimulateEnvironmentJob()
         {
             jobDeltaTime = Time.DeltaTime
         };
-        return job.Schedule(this, inputDependencies);
+        var simulateEnvironmentJobHandle = job.Schedule(this, inputDependencies);
+
+        var simulateCoralGrowthJob = new SimulateCoralGrowth()
+        {
+            jobDeltaTime = Time.DeltaTime
+        };
+        var simulateCoralGrowthJobHandle = simulateCoralGrowthJob.Schedule(this, simulateEnvironmentJobHandle);
+
+        return simulateCoralGrowthJobHandle;
     }
 }
