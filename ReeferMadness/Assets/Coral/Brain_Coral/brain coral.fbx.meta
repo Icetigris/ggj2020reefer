@@ -1,11 +1,8 @@
 fileFormatVersion: 2
-guid: 4c0b2ad44487ebf4ab9b78c61b902610
+guid: 732bae03217b9d54ca9c674910eddec1
 ModelImporter:
   serializedVersion: 19300
-  internalIDToNameTable:
-  - first:
-      74: -2759091969005063903
-    second: branch_coral_1|branch_coral_1Action
+  internalIDToNameTable: []
   externalObjects: {}
   materials:
     materialImportMode: 1
