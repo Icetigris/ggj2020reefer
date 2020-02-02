@@ -23,8 +23,9 @@ public class BrainCoralSpawningSystem : JobComponentSystem
                     });
                 }
             }
-            EntityManager.DestroyEntity(spawner.prefab);
-            EntityManager.DestroyEntity(e);
+            //EntityManager.DestroyEntity(spawner.prefab);
+            //EntityManager.DestroyEntity(e);
+            this.Enabled = false;
         }).Run();
 
         return inputDependencies;
