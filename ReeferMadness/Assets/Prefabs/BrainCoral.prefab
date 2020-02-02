@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2362669886817632206}
   - component: {fileID: 6326643405159463701}
   - component: {fileID: 6819358698504259086}
-  - component: {fileID: 1807014426025189665}
+  - component: {fileID: 6095359146430909205}
   m_Layer: 0
   m_Name: BrainCoral
   m_TagString: Untagged
@@ -80,7 +80,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &1807014426025189665
+--- !u!114 &6095359146430909205
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -89,7 +89,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 2100613523043822423}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cf974c82801b4f40931a424aad8c6cb, type: 3}
+  m_Script: {fileID: 11500000, guid: 2dbf0eb1274d0f24c9866961fb6f07fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  growthRate: 0.2
+  GrowthScaling:
+    x: 1
+    y: 1
+    z: 1
+  baseHP: 20
+  SpawnOffset:
+    x: 1
+    y: 0
+    z: 1
+  SpawnRadius: 10

@@ -14,6 +14,8 @@ public enum CoralType
     Brain = 0,
     Branching,
     Shelf,
+    Cone,
+    Tube,
     TypeCount
 }
 

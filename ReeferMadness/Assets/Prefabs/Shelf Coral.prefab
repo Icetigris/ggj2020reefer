@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 347076272062762941}
   - component: {fileID: 4967213947381315500}
   - component: {fileID: 385655504972894674}
+  - component: {fileID: 7944318451671683011}
   m_Layer: 0
   m_Name: Shelf Coral
   m_TagString: Untagged
@@ -79,3 +80,25 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &7944318451671683011
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6343819870982931641}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dbf0eb1274d0f24c9866961fb6f07fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GrowthScaling:
+    x: 1
+    y: 0
+    z: 0.5
+  baseHP: 20
+  SpawnOffset:
+    x: 0
+    y: 1
+    z: 0.5
+  SpawnRadius: 10

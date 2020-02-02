@@ -164,8 +164,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1752fcfd63ee934585154788b65dbdc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Temperature: 78
-  pH: 8.4
+  Temperature: 85
+  pH: 7
+  MinTemperature: 75
+  MaxTemperature: 85
+  MinPH: 7
+  MaxPH: 8.4
+  ReactionRate: 0.1
 --- !u!1 &1790407066
 GameObject:
   m_ObjectHideFlags: 0
@@ -199,6 +204,14 @@ MonoBehaviour:
   - {fileID: 2100613523043822423, guid: 8217b63c7b0b70643bec23db07c5f5a1, type: 3}
   - {fileID: 6902413923710408119, guid: db016598888135243a353f6d99db86ea, type: 3}
   - {fileID: 6343819870982931641, guid: 0d647b77c7d7fd3488b2c6c4790aa31d, type: 3}
+  - {fileID: 466226356600316904, guid: 556c9cfe7003bf24aa586e684b9554fb, type: 3}
+  - {fileID: 2214930585440316724, guid: 4701b561934ae334aabfd5da0aff8609, type: 3}
+  prefabDebugNames:
+  - Brain
+  - Branch
+  - Shelf
+  - Cone
+  - Tube
 --- !u!4 &1790407068
 Transform:
   m_ObjectHideFlags: 0
@@ -251,7 +264,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1806314903}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.1796252, y: 2.673519, z: -7.5157394}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

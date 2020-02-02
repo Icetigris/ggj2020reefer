@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8892615872167460252}
   - component: {fileID: 4529529581596900613}
   - component: {fileID: 5960535091225768579}
+  - component: {fileID: -5958550378784024811}
   m_Layer: 0
   m_Name: Tube Coral
   m_TagString: Untagged
@@ -79,3 +80,25 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &-5958550378784024811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2214930585440316724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2dbf0eb1274d0f24c9866961fb6f07fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GrowthScaling:
+    x: 0.2
+    y: 1
+    z: 0.2
+  baseHP: 20
+  SpawnOffset:
+    x: 1
+    y: 0
+    z: 1
+  SpawnRadius: 10
