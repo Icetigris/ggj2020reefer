@@ -152,6 +152,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sea Floor
       objectReference: {fileID: 0}
+    - target: {fileID: 2884192793928687997, guid: 18d9267281666dd48b4ac8de7dd132ea,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 62aa84ec4e13e17478b4495a0336aa1d, type: 2}
     - target: {fileID: 2884192793928687999, guid: 18d9267281666dd48b4ac8de7dd132ea,
         type: 3}
       propertyPath: m_LocalPosition.x
