@@ -1,4 +1,6 @@
-﻿using Unity.Burst;
+﻿using System;
+using System.Collections.Generic;
+using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Jobs;
@@ -6,6 +8,14 @@ using Unity.Mathematics;
 using Unity.Transforms;
 using UnityEngine;
 using static Unity.Mathematics.math;
+
+public enum CoralType
+{
+    Brain = 0,
+    Branching,
+    Shelf,
+    TypeCount
+}
 
 public class DropCoralSystem : JobComponentSystem
 {
@@ -19,21 +29,24 @@ public class DropCoralSystem : JobComponentSystem
             playerPosition = GameObject.Find("CharacterController").transform;
         }
 
-        if(Input.GetButtonUp("Fire1"))
+        //handle weapon change
+        if (Input.GetButtonDown("Fire2"))
         {
-            Entities.WithStructuralChanges().ForEach((Entity e, ref BrainCoralSpawner spawner) =>
+            var currentlyEquippedSeed = GetSingleton<EquippedCoral>();
+            var currentlyEquippedSeedEntity = GetSingletonEntity<EquippedCoral>();
+            var newtype = (CoralType)((int)(currentlyEquippedSeed.equippedType + 1) % (int)CoralType.TypeCount);
+            EntityManager.SetComponentData<EquippedCoral>(currentlyEquippedSeedEntity, new EquippedCoral { equippedType = newtype });
+        }
+
+        if (Input.GetButtonUp("Fire1"))
+        {
+            var currentlyEquippedSeed = GetSingleton<EquippedCoral>();
+            var coral = EntityManager.Instantiate(CoralSpawnerAuthoring.convertedPrefabs[(int)currentlyEquippedSeed.equippedType]);
+            EntityManager.SetComponentData(coral, new Translation
             {
-                using (var corals = EntityManager.Instantiate(spawner.prefab, spawner.spawnCount, Allocator.Temp))
-                {
-                    for (int i = 0; i < corals.Length; ++i)
-                    {
-                        EntityManager.SetComponentData(corals[i], new Translation
-                        {
-                            Value = playerPosition.position
-                        });
-                    }
-                }
-            }).Run();
+                Value = playerPosition.position
+            });
+            EntityManager.SetName(coral, CoralSpawnerAuthoring.prefabNames[(int)currentlyEquippedSeed.equippedType]);
         }
 
         return inputDependencies;
